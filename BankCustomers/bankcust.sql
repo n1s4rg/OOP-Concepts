@@ -1,0 +1,23 @@
+create user bankcust identified by 123;
+
+connect sys as sysdba
+
+grant connect, resource to bankcust;
+
+grant all privileges to bankcust;
+
+connect
+
+
+--TABLES
+
+-- CUSTOMER 
+CREATE TABLE CUSTOMER
+(
+    CUSTOMER_ID NUMBER(10) CONSTRAINT PK_CUST_ID PRIMARY KEY, CONSTRAINT CUST_ID_CHECK CHECK(CUSTOMER_ID <= 100000),
+    FIRST_NAME  VARCHAR2(50) CONSTRAINT FIRST_NAME_CUST NOT NULL,
+    LAST_NAME  VARCHAR2(50) CONSTRAINT LAST_NAME_CUST NOT NULL,
+	SIN NUMBER(9) UNIQUE,
+	CREATED_ON DATE DEFAULT sysdate,
+	UPDATED_ON DATE DEFAULT sysdate
+);
